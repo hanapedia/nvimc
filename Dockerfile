@@ -15,7 +15,7 @@ RUN apk add --no-cache \
     lua-language-server
 
 # Install zig and zls via zvm
-ARG ZVM_VERSION=v0.8.20
+ARG ZVM_VERSION=v0.8.9
 ARG ZIG_VERSION=0.16.0
 RUN go install github.com/tristanisham/zvm@${ZVM_VERSION} && \
     /root/go/bin/zvm i --zls ${ZIG_VERSION} && \
