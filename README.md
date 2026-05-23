@@ -42,10 +42,16 @@ The `--recurse-submodules` flag is required to pull all plugin and parser source
 docker build -t nvimc .
 ```
 
-To pin a different Zig version:
+The image is architecture-agnostic — build it on any host and it produces a native image for that architecture (amd64 or arm64). To pin a different Zig version:
 
 ```sh
 docker build --build-arg ZIG_VERSION=0.14.0 -t nvimc .
+```
+
+To cross-compile for a different architecture (requires a multi-platform buildx builder):
+
+```sh
+docker buildx build --platform linux/arm64 -t nvimc .
 ```
 
 ### Install the run script
