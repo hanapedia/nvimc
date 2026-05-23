@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.23.4
 
 RUN apk add --no-cache \
     neovim \
