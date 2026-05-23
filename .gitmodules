@@ -1,0 +1,126 @@
+[submodule "plugins/lazy.nvim"]
+	path = plugins/lazy.nvim
+	url = https://github.com/folke/lazy.nvim.git
+[submodule "plugins/popup.nvim"]
+	path = plugins/popup.nvim
+	url = https://github.com/nvim-lua/popup.nvim.git
+[submodule "plugins/plenary.nvim"]
+	path = plugins/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "plugins/nvim-autopairs"]
+	path = plugins/nvim-autopairs
+	url = https://github.com/windwp/nvim-autopairs.git
+[submodule "plugins/Comment.nvim"]
+	path = plugins/Comment.nvim
+	url = https://github.com/numToStr/Comment.nvim.git
+[submodule "plugins/nvim-web-devicons"]
+	path = plugins/nvim-web-devicons
+	url = https://github.com/kyazdani42/nvim-web-devicons.git
+[submodule "plugins/vim-bbye"]
+	path = plugins/vim-bbye
+	url = https://github.com/moll/vim-bbye.git
+[submodule "plugins/mynord.nvim"]
+	path = plugins/mynord.nvim
+	url = https://github.com/hanapedia/mynord.nvim.git
+[submodule "plugins/nvim-cmp"]
+	path = plugins/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "plugins/cmp-buffer"]
+	path = plugins/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer.git
+[submodule "plugins/cmp-path"]
+	path = plugins/cmp-path
+	url = https://github.com/hrsh7th/cmp-path.git
+[submodule "plugins/cmp-cmdline"]
+	path = plugins/cmp-cmdline
+	url = https://github.com/hrsh7th/cmp-cmdline.git
+[submodule "plugins/cmp_luasnip"]
+	path = plugins/cmp_luasnip
+	url = https://github.com/saadparwaiz1/cmp_luasnip.git
+[submodule "plugins/cmp-nvim-lsp"]
+	path = plugins/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule "plugins/cmp-nvim-lua"]
+	path = plugins/cmp-nvim-lua
+	url = https://github.com/hrsh7th/cmp-nvim-lua.git
+[submodule "plugins/LuaSnip"]
+	path = plugins/LuaSnip
+	url = https://github.com/L3MON4D3/LuaSnip.git
+[submodule "plugins/friendly-snippets"]
+	path = plugins/friendly-snippets
+	url = https://github.com/rafamadriz/friendly-snippets.git
+[submodule "plugins/nvim-lspconfig"]
+	path = plugins/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "plugins/trouble.nvim"]
+	path = plugins/trouble.nvim
+	url = https://github.com/folke/trouble.nvim.git
+[submodule "plugins/telescope.nvim"]
+	path = plugins/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim.git
+[submodule "plugins/nvim-ts-context-commentstring"]
+	path = plugins/nvim-ts-context-commentstring
+	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring.git
+[submodule "plugins/nvim-treesitter-context"]
+	path = plugins/nvim-treesitter-context
+	url = https://github.com/nvim-treesitter/nvim-treesitter-context.git
+[submodule "plugins/gitsigns.nvim"]
+	path = plugins/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim.git
+[submodule "plugins/lualine.nvim"]
+	path = plugins/lualine.nvim
+	url = https://github.com/nvim-lualine/lualine.nvim.git
+[submodule "plugins/nvim-tree.lua"]
+	path = plugins/nvim-tree.lua
+	url = https://github.com/kyazdani42/nvim-tree.lua.git
+[submodule "plugins/bufferline.nvim"]
+	path = plugins/bufferline.nvim
+	url = https://github.com/akinsho/bufferline.nvim.git
+[submodule "plugins/snacks.nvim"]
+	path = plugins/snacks.nvim
+	url = https://github.com/folke/snacks.nvim.git
+[submodule "plugins/claudecode.nvim"]
+	path = plugins/claudecode.nvim
+	url = https://github.com/coder/claudecode.nvim.git
+[submodule "parsers/tree-sitter-go"]
+	path = parsers/tree-sitter-go
+	url = https://github.com/tree-sitter/tree-sitter-go.git
+[submodule "parsers/tree-sitter-c"]
+	path = parsers/tree-sitter-c
+	url = https://github.com/tree-sitter/tree-sitter-c.git
+[submodule "parsers/tree-sitter-cpp"]
+	path = parsers/tree-sitter-cpp
+	url = https://github.com/tree-sitter/tree-sitter-cpp.git
+[submodule "parsers/tree-sitter-json"]
+	path = parsers/tree-sitter-json
+	url = https://github.com/tree-sitter/tree-sitter-json.git
+[submodule "parsers/tree-sitter-bash"]
+	path = parsers/tree-sitter-bash
+	url = https://github.com/tree-sitter/tree-sitter-bash.git
+[submodule "parsers/tree-sitter-lua"]
+	path = parsers/tree-sitter-lua
+	url = https://github.com/tree-sitter-grammars/tree-sitter-lua.git
+[submodule "parsers/tree-sitter-zig"]
+	path = parsers/tree-sitter-zig
+	url = https://github.com/tree-sitter-grammars/tree-sitter-zig.git
+[submodule "parsers/tree-sitter-vim"]
+	path = parsers/tree-sitter-vim
+	url = https://github.com/tree-sitter-grammars/tree-sitter-vim.git
+[submodule "parsers/tree-sitter-yaml"]
+	path = parsers/tree-sitter-yaml
+	url = https://github.com/tree-sitter-grammars/tree-sitter-yaml.git
+[submodule "parsers/tree-sitter-markdown"]
+	path = parsers/tree-sitter-markdown
+	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
+[submodule "parsers/tree-sitter-vimdoc"]
+	path = parsers/tree-sitter-vimdoc
+	url = https://github.com/neovim/tree-sitter-vimdoc.git
+[submodule "parsers/tree-sitter-query"]
+	path = parsers/tree-sitter-query
+	url = https://github.com/nvim-treesitter/tree-sitter-query.git
+[submodule "parsers/tree-sitter-fish"]
+	path = parsers/tree-sitter-fish
+	url = https://github.com/ram02z/tree-sitter-fish.git
+[submodule "plugins/nvim-treesitter"]
+	path = plugins/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git

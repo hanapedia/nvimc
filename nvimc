@@ -1,0 +1,28 @@
+#!/bin/sh
+# Run nvimc — Neovim in a container.
+# Usage: nvimc [path] [nvim args...]
+
+TARGET="${1:-$(pwd)}"
+TARGET="$(realpath "$TARGET")"
+
+if [ -f "$TARGET" ]; then
+  MOUNT_SRC="$(dirname "$TARGET")"
+  NVIM_OPEN="/workspace/$(basename "$TARGET")"
+else
+  MOUNT_SRC="$TARGET"
+  NVIM_OPEN="/workspace"
+fi
+
+MOUNTS="-v $MOUNT_SRC:/workspace"
+
+if [ -f "$MOUNT_SRC/go.mod" ]; then
+  GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
+  MOUNTS="$MOUNTS -v $GOMODCACHE:/root/go/pkg/mod:ro"
+fi
+
+docker run --rm -it \
+  --network=none \
+  -e TERM="$TERM" \
+  -e COLORTERM="${COLORTERM:-truecolor}" \
+  $MOUNTS \
+  nvimc "$NVIM_OPEN" "${@:2}"
