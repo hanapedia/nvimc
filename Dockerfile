@@ -7,19 +7,30 @@ RUN apk add --no-cache \
     g++ \
     make \
     musl-dev \
-    # Languages
-    go \
+    ca-certificates \
     # LSP servers
-    gopls \
     clang-extra-tools \
     lua-language-server
 
+# Install Go from go.dev
+ARG GO_VERSION=1.26.1
+ARG TARGETARCH
+RUN wget -qO /tmp/go.tar.gz \
+      "https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz" && \
+    tar -C /usr/local -xzf /tmp/go.tar.gz && \
+    rm /tmp/go.tar.gz
+ENV PATH="/usr/local/go/bin:/root/go/bin:${PATH}"
+
+# Install gopls
+ARG GOPLS_VERSION=v0.21.1
+RUN go install golang.org/x/tools/gopls@${GOPLS_VERSION}
+
 # Install zig and zls via zvm
-ARG ZVM_VERSION=v0.8.9
+ARG ZVM_VERSION=v0.8.20
 ARG ZIG_VERSION=0.16.0
 RUN go install github.com/tristanisham/zvm@${ZVM_VERSION} && \
-    /root/go/bin/zvm i --zls ${ZIG_VERSION} && \
-    /root/go/bin/zvm use ${ZIG_VERSION}
+    zvm i --zls ${ZIG_VERSION} && \
+    zvm use ${ZIG_VERSION}
 ENV PATH="/root/.zvm/bin:${PATH}"
 
 # Copy plugins, parsers, and nvim config
