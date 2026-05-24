@@ -30,11 +30,11 @@ A fully self-contained Neovim environment running in a Docker container. Everyth
 ### Clone
 
 ```sh
-git clone --recurse-submodules https://github.com/hanapedia/nvimc.git
+git clone --recurse-submodules --shallow-submodules https://github.com/hanapedia/nvimc.git
 cd nvimc
 ```
 
-The `--recurse-submodules` flag is required to pull all plugin and parser sources.
+`--recurse-submodules` pulls all plugin and parser sources. `--shallow-submodules` clones each submodule at depth 1 (the pinned commit only, no history), which significantly reduces download size.
 
 ### Build
 
