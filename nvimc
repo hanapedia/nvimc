@@ -4,6 +4,7 @@
 
 TARGET="${1:-$(pwd)}"
 TARGET="$(realpath "$TARGET")"
+[ $# -gt 0 ] && shift
 
 if [ -f "$TARGET" ]; then
   MOUNT_SRC="$(dirname "$TARGET")"
@@ -25,4 +26,4 @@ docker run --rm -it \
   -e TERM="$TERM" \
   -e COLORTERM="${COLORTERM:-truecolor}" \
   $MOUNTS \
-  nvimc "$NVIM_OPEN" "${@:2}"
+  nvimc "$NVIM_OPEN" "$@"
