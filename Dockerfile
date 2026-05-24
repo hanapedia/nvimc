@@ -45,7 +45,7 @@ compile() {
   fi
 }
 
-for lang in go c cpp lua zig vim query yaml json bash fish; do
+for lang in go c lua zig vim query yaml json bash fish; do
   compile $lang
 done
 
