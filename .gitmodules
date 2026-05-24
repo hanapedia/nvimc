@@ -112,9 +112,6 @@
 [submodule "parsers/tree-sitter-markdown"]
 	path = parsers/tree-sitter-markdown
 	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
-[submodule "parsers/tree-sitter-vimdoc"]
-	path = parsers/tree-sitter-vimdoc
-	url = https://github.com/neovim/tree-sitter-vimdoc.git
 [submodule "parsers/tree-sitter-query"]
 	path = parsers/tree-sitter-query
 	url = https://github.com/nvim-treesitter/tree-sitter-query.git
