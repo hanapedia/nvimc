@@ -8,6 +8,7 @@ RUN apk add --no-cache \
     make \
     musl-dev \
     ca-certificates \
+    ripgrep \
     # LSP servers
     clang-extra-tools \
     lua-language-server
