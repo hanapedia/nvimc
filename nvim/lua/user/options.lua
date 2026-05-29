@@ -1,5 +1,6 @@
 local options = {
   backup = false, -- creates a backup file
+  clipboard = "unnamedplus", -- sync unnamed register with system clipboard (via OSC 52)
   cmdheight = 2, -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
@@ -47,6 +48,19 @@ end
 vim.opt.nu = true -- set relative numbered lines
 vim.opt.relativenumber = true -- set relative numbered lines
 vim.o.statuscolumn = "%=%{printf('%3d', v:lnum)} %{printf('%2d', v:relnum)} %s│"
+
+-- OSC 52 clipboard: propagates copy/paste through SSH and container exec back to the Mac terminal
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+  },
+}
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
