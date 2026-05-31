@@ -33,7 +33,7 @@ vim.lsp.config("zls", {
   capabilities = lsp.capabilities,
   settings = {
     zls = {
-      enable_build_on_save = true,
+      enable_build_on_save = false,
     },
   },
 })
