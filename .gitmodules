@@ -115,6 +115,3 @@
 [submodule "parsers/tree-sitter-fish"]
 	path = parsers/tree-sitter-fish
 	url = https://github.com/ram02z/tree-sitter-fish.git
-[submodule "plugins/nvim-treesitter"]
-	path = plugins/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter.git
