@@ -74,13 +74,15 @@ return {
     end,
   },
 
-  { dir = "/plugins/nvim-ts-context-commentstring" },
+  -- Treesitter (no build step — parsers are compiled at image build time)
   {
-    dir = "/plugins/nvim-treesitter-context",
+    dir = "/plugins/nvim-treesitter",
     config = function()
       require("user.treesitter")
     end,
   },
+  { dir = "/plugins/nvim-ts-context-commentstring" },
+  { dir = "/plugins/nvim-treesitter-context" },
 
   -- Git signs
   {

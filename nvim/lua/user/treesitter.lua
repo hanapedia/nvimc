@@ -1,3 +1,15 @@
+local configs = require("nvim-treesitter.configs")
+configs.setup {
+  sync_install = false,
+  auto_install = false,
+  highlight = {
+    enable = true,
+    disable = { "sql" },
+    additional_vim_regex_highlighting = true,
+  },
+  indent = { enable = true, disable = { "yaml" } },
+}
+
 require("ts_context_commentstring").setup {
   enable = true,
   enable_autocmd = false,
