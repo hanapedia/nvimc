@@ -9,7 +9,11 @@ RUN apk add --no-cache \
     musl-dev \
     ca-certificates \
     ripgrep \
-    # LSP servers
+    xz \
+    libbpf-dev \
+    elfutils-dev \
+    zlib-dev \
+    # linux-headers \
     clang-extra-tools \
     lua-language-server
 
