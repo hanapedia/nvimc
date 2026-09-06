@@ -21,7 +21,7 @@ RUN apk add --no-cache \
 RUN adduser -D -u 1000 -G users -h /home/dev dev
 
 # Install Go from go.dev
-ARG GO_VERSION=1.26.1
+ARG GO_VERSION=1.26.3
 ARG TARGETARCH
 RUN wget -qO /tmp/go.tar.gz \
       "https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz" && \
