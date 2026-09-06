@@ -30,12 +30,15 @@ RUN AQUA_ARCH=$([ "$TARGETARCH" = "arm64" ] && echo "arm64" || echo "amd64") && 
     rm /tmp/aqua.tar.gz
 ENV AQUA_ROOT_DIR=/usr/local/share/aquaproj-aqua
 ENV AQUA_GLOBAL_CONFIG=/aqua.yaml
-ENV PATH="/usr/local/share/aquaproj-aqua/bin:${PATH}"
 
-# Install tools via aqua
+# Install tools via aqua, then link real binaries into PATH directly so the
+# aqua proxy is never invoked at runtime (avoids interference from project-level aqua.yaml)
 COPY aqua.yaml aqua-checksums.json /
-
-RUN aqua install --all
+RUN aqua install --all && \
+    for tool in nvim rg lua-language-server zig zls; do \
+      real="$(aqua which "$tool" 2>/dev/null)" && \
+      [ -f "$real" ] && ln -sf "$real" "/usr/local/bin/$tool" || true; \
+    done
 
 # Install Go from go.dev
 RUN wget -qO /tmp/go.tar.gz \
