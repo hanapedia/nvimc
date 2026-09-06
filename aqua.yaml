@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/aqua-yaml.json
+$schema: https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/aqua-yaml.json
+
+checksum:
+  enabled: true
+  require_checksum: true
+  supported_envs:
+    - linux/amd64
+    - linux/arm64
+
+registries:
+  - type: standard
+    ref: v4.553.0
+
+packages:
+  - name: neovim/neovim@v0.11.0
+  - name: BurntSushi/ripgrep@14.1.1
+  - name: LuaLS/lua-language-server@3.13.6
+  - name: ziglang/zig@0.16.0
+  - name: zigtools/zls@0.16.0

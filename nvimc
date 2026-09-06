@@ -1,6 +1,20 @@
 #!/bin/sh
 # Run nvimc — Neovim in a container.
-# Usage: nvimc [path] [nvim args...]
+# Usage: nvimc [-H <headers-dir>] [path] [nvim args...]
+
+HEADERS_DIR=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -H|--headers)
+      HEADERS_DIR="$(realpath "$2")"
+      shift 2
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
 
 TARGET="${1:-$(pwd)}"
 TARGET="$(realpath "$TARGET")"
@@ -19,6 +33,14 @@ MOUNTS="-v $MOUNT_SRC:/workspace"
 if [ -f "$MOUNT_SRC/go.mod" ]; then
   GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
   MOUNTS="$MOUNTS -v $GOMODCACHE:/root/go/pkg/mod:ro"
+fi
+
+if [ -z "$HEADERS_DIR" ] && [ -d "$MOUNT_SRC/.dev-headers" ]; then
+  HEADERS_DIR="$MOUNT_SRC/.dev-headers"
+fi
+
+if [ -n "$HEADERS_DIR" ]; then
+  MOUNTS="$MOUNTS -v $HEADERS_DIR:/usr/local/include:ro"
 fi
 
 docker run --rm -it \

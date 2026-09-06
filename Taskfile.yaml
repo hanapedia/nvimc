@@ -1,0 +1,36 @@
+version: '3'
+
+vars:
+  IMAGE: nvimc
+  DEV_UID:
+    sh: id -u
+  DEV_GID:
+    sh: id -g
+
+tasks:
+  build:
+    desc: Build the nvimc image with the current user's UID/GID
+    cmds:
+      - docker build
+          --build-arg DEV_UID={{.DEV_UID}}
+          --build-arg DEV_GID={{.DEV_GID}}
+          -t {{.IMAGE}} .
+
+  build-no-cache:
+    desc: Rebuild the nvimc image without Docker layer cache
+    cmds:
+      - docker build
+          --no-cache
+          --build-arg DEV_UID={{.DEV_UID}}
+          --build-arg DEV_GID={{.DEV_GID}}
+          -t {{.IMAGE}} .
+
+  update-checksums:
+    desc: Regenerate aqua-checksums.json after editing aqua.yaml (requires aqua on host)
+    cmds:
+      - aqua update-checksum
+
+  submodules:
+    desc: Initialize and update all git submodules to their pinned commits
+    cmds:
+      - git submodule update --init --recursive --depth 1
