@@ -1,0 +1,59 @@
+{
+  "checksums": [
+    {
+      "id": "github_release/github.com/BurntSushi/ripgrep/14.1.1/ripgrep-14.1.1-aarch64-unknown-linux-gnu.tar.gz",
+      "checksum": "C827481C4FF4EA10C9DC7A4022C8DE5DB34A5737CB74484D62EB94A95841AB2F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/BurntSushi/ripgrep/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",
+      "checksum": "4CF9F2741E6C465FFDB7C26F38056A59E2A2544B51F7CC128EF28337EEAE4D8E",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/LuaLS/lua-language-server/3.13.6/lua-language-server-3.13.6-linux-arm64.tar.gz",
+      "checksum": "32A8C21B1AF4DDE6487FA5EA370A0A317E1E1FDD68BF1D4340793EDD1E130034",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/LuaLS/lua-language-server/3.13.6/lua-language-server-3.13.6-linux-x64.tar.gz",
+      "checksum": "347CB07E609CB84D9731C04603340AE749D8ABE802F1AD50607383AB0E865366",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/neovim/neovim/v0.11.0/nvim-linux-arm64.tar.gz",
+      "checksum": "6959583F45042DA20E0A082DC65108725629A4739AB91246C678FD084ECAF50E",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/neovim/neovim/v0.11.0/nvim-linux-x86_64.tar.gz",
+      "checksum": "FE0A5BC79E64C5E4D9F844CD96157EBD3919EF1343B329E9EBC3F455924CC7D6",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/builds.zigtools.org/zls-aarch64-linux-0.16.0.tar.xz",
+      "checksum": "430CD293D201EB70AE2519DBC96C854BF8791B8DF7FC9392E8D2DC9680A2BED7",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/builds.zigtools.org/zls-x86_64-linux-0.16.0.tar.xz",
+      "checksum": "DED6D562A0B86EE878B1DDF70FFAB2797CE3CDCA3B02D6077548F9D56DFF96B6",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/ziglang.org/download/0.16.0/zig-aarch64-linux-0.16.0.tar.xz",
+      "checksum": "EA4B09BFB22EC6F6C6CEAC57AB63EFB6B46E17AB08D21F69F3A48B38E1534F17",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz",
+      "checksum": "70E49664A74374B48B51E6F3FDFBF437F6395D42509050588BD49ABE52BA3D00",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.553.0/registry.yaml",
+      "checksum": "A0610103BC291509498CA448B8E9FB09588A1999FD0E391D1BEBEA8E596348A0",
+      "algorithm": "sha256"
+    }
+  ]
+}
