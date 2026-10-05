@@ -32,7 +32,7 @@ MOUNTS="-v $MOUNT_SRC:/workspace"
 
 if [ -f "$MOUNT_SRC/go.mod" ]; then
   GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
-  MOUNTS="$MOUNTS -v $GOMODCACHE:/root/go/pkg/mod:ro"
+  MOUNTS="$MOUNTS -v $GOMODCACHE:/home/dev/go/pkg/mod:ro"
 fi
 
 if [ -z "$HEADERS_DIR" ] && [ -d "$MOUNT_SRC/.dev-headers" ]; then
