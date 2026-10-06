@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - TAG
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version from TAG
+        id: version
+        run: |
+          VERSION="$(tr -d '[:space:]' < TAG)"
+          if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "TAG file does not contain a valid semantic version: $VERSION" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if version is newer than latest release
+        id: check
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          LATEST_TAG="$(git tag --list 'v*' --sort=-v:refname | head -n1)"
+          LATEST="${LATEST_TAG#v}"
+          if [ -z "$LATEST" ]; then
+            echo "No existing release tags found; $VERSION is new."
+            echo "newer=true" >> "$GITHUB_OUTPUT"
+          else
+            HIGHEST="$(printf '%s\n%s\n' "$LATEST" "$VERSION" | sort -V | tail -n1)"
+            if [ "$HIGHEST" = "$VERSION" ] && [ "$VERSION" != "$LATEST" ]; then
+              echo "$VERSION is newer than latest released $LATEST."
+              echo "newer=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "$VERSION is not newer than latest released $LATEST; skipping."
+              echo "newer=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Set up Docker Buildx
+        if: steps.check.outputs.newer == 'true'
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: steps.check.outputs.newer == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        if: steps.check.outputs.newer == 'true'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/hanapedia/nvimc:${{ steps.version.outputs.version }}
+            ghcr.io/hanapedia/nvimc:latest
+
+      - name: Publish release with nvimc script
+        if: steps.check.outputs.newer == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          generate_release_notes: true
+          files: nvimc

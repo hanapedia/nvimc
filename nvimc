@@ -33,6 +33,14 @@ MOUNTS="-v $MOUNT_SRC:/workspace"
 if [ -f "$MOUNT_SRC/go.mod" ]; then
   GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
   MOUNTS="$MOUNTS -v $GOMODCACHE:/home/dev/go/pkg/mod:ro"
+
+  # Persist the build cache across runs. Without this, gopls has to
+  # type-check the whole dependency graph from scratch on every container
+  # start (--rm wipes /home/dev/.cache/go-build), which is what causes the
+  # 10-15s wait before gopls responds on dependency-heavy modules.
+  GOCACHE="${GOCACHE:-$HOME/.cache/go-build}"
+  mkdir -p "$GOCACHE"
+  MOUNTS="$MOUNTS -v $GOCACHE:/home/dev/.cache/go-build"
 fi
 
 if [ -z "$HEADERS_DIR" ] && [ -d "$MOUNT_SRC/.dev-headers" ]; then
