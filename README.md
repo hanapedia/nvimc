@@ -27,25 +27,46 @@ A fully self-contained Neovim environment running in a Docker container. Everyth
 ### Prerequisites
 
 - Docker
-- Git
-- [task](https://taskfile.dev) (optional, for the Taskfile shortcuts)
 
-### Clone
+### Install
+
+Download the run script and pull the published image — no clone or local build required:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/hanapedia/nvimc/main/nvimc -o ~/.local/bin/nvimc
+chmod +x ~/.local/bin/nvimc
+
+docker pull ghcr.io/hanapedia/nvimc:latest
+```
+
+Make sure `~/.local/bin` (or wherever you place the script) is on your `$PATH`.
+
+### Updating
+
+Published images are versioned (see [releases](https://github.com/hanapedia/nvimc/releases)). To get the latest:
+
+```sh
+docker pull ghcr.io/hanapedia/nvimc:latest
+```
+
+To pin a specific version instead of `latest`, set `NVIMC_IMAGE`:
+
+```sh
+docker pull ghcr.io/hanapedia/nvimc:0.0.2
+export NVIMC_IMAGE=ghcr.io/hanapedia/nvimc:0.0.2
+```
+
+### Building from source
+
+Only needed if you want to modify the image itself (plugins, LSPs, tool versions) rather than use the published one.
 
 ```sh
 git clone --recurse-submodules --shallow-submodules https://github.com/hanapedia/nvimc.git
 cd nvimc
-```
-
-`--recurse-submodules` pulls all plugin and parser sources. `--shallow-submodules` clones each submodule at depth 1 (the pinned commit only, no history), which significantly reduces download size.
-
-### Build
-
-```sh
 task build
 ```
 
-This automatically passes your current user's UID/GID as build arguments so files created inside the container are owned by you on the host.
+`--recurse-submodules` pulls all plugin and parser sources. `--shallow-submodules` clones each submodule at depth 1 (the pinned commit only, no history), which significantly reduces download size. `task build` passes your current user's UID/GID as build arguments so files created inside the container are owned by you on the host, and tags the result `nvimc`.
 
 Without task:
 
@@ -68,12 +89,10 @@ To cross-compile for a different architecture (requires a multi-platform buildx 
 docker buildx build --platform linux/arm64 -t nvimc .
 ```
 
-### Install the run script
-
-Copy `nvimc` somewhere on your `$PATH`:
+Point the run script at your local build instead of the published image:
 
 ```sh
-cp nvimc ~/.local/bin/nvimc
+export NVIMC_IMAGE=nvimc
 ```
 
 ## Usage
@@ -90,6 +109,7 @@ nvimc
 ```
 
 The script automatically:
+- Runs `$NVIMC_IMAGE` if set, otherwise `ghcr.io/hanapedia/nvimc:latest`
 - Mounts the target directory (or the file's parent directory) at `/workspace`
 - Mounts `$GOMODCACHE` (default: `~/go/pkg/mod`) read-only when `go.mod` is present
 - Mounts C headers when a `.dev-headers/` directory exists in the workspace, or when `-H` is passed

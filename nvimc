@@ -1,6 +1,11 @@
 #!/bin/sh
 # Run nvimc — Neovim in a container.
 # Usage: nvimc [-H <headers-dir>] [path] [nvim args...]
+#
+# Image resolution: set $NVIMC_IMAGE to override (e.g. to pin a version,
+# or to point at a locally built image such as "nvimc" for development).
+
+IMAGE="${NVIMC_IMAGE:-ghcr.io/hanapedia/nvimc:latest}"
 
 HEADERS_DIR=""
 
@@ -56,4 +61,4 @@ docker run --rm -it \
   -e TERM="$TERM" \
   -e COLORTERM="${COLORTERM:-truecolor}" \
   $MOUNTS \
-  nvimc "$NVIM_OPEN" "$@"
+  "$IMAGE" "$NVIM_OPEN" "$@"
