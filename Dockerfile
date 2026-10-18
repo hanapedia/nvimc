@@ -90,7 +90,13 @@ compile_md tree-sitter-markdown markdown
 compile_md tree-sitter-markdown-inline markdown_inline
 SCRIPT
 
-RUN chown -R $DEV_UID:$DEV_GID /home/dev
+# Pre-create .local/state so it's owned by dev before anything bind-mounts
+# a subdirectory into it at runtime (e.g. nvimc mounting the host's
+# nord-theme state dir at /home/dev/.local/state/nord) -- otherwise Docker
+# auto-creates missing mount-point ancestors as root, which then blocks
+# nvim itself from writing its own state (shada, etc.) under the same
+# .local/state directory.
+RUN mkdir -p /home/dev/.local/state && chown -R $DEV_UID:$DEV_GID /home/dev
 
 USER dev
 WORKDIR /workspace

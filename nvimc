@@ -35,6 +35,15 @@ fi
 
 MOUNTS="-v $MOUNT_SRC:/workspace"
 
+# So the "nord" colorscheme plugin can read which variant (dark/light) was
+# last set via the `nord-theme` command on the host -- same state file path
+# convention it uses on the host ($XDG_STATE_HOME, defaulting to
+# ~/.local/state), mounted at the equivalent path for the container's "dev"
+# user. Created on the host first so docker doesn't auto-create it as root.
+NORD_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/nord"
+mkdir -p "$NORD_STATE_DIR"
+MOUNTS="$MOUNTS -v $NORD_STATE_DIR:/home/dev/.local/state/nord:ro"
+
 if [ -f "$MOUNT_SRC/go.mod" ]; then
   GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
   MOUNTS="$MOUNTS -v $GOMODCACHE:/home/dev/go/pkg/mod:ro"

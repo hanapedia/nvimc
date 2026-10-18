@@ -31,7 +31,8 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme nord")
+      local variant = require("nord").initial_variant()
+      vim.cmd.colorscheme(variant == "light" and "nord-light" or "nord")
     end,
   },
 

@@ -111,6 +111,7 @@ nvimc
 The script automatically:
 - Runs `$NVIMC_IMAGE` if set, otherwise `ghcr.io/hanapedia/nvimc:latest`
 - Mounts the target directory (or the file's parent directory) at `/workspace`
+- Mounts the host's [`nord-theme`](https://github.com/hanapedia/nord) state dir (`$XDG_STATE_HOME/nord`, default `~/.local/state/nord`) read-only, so the bundled `nord` colorscheme opens in whichever variant (dark/light) was last set on the host
 - Mounts `$GOMODCACHE` (default: `~/go/pkg/mod`) read-only when `go.mod` is present
 - Mounts C headers when a `.dev-headers/` directory exists in the workspace, or when `-H` is passed
 - Passes `TERM` and `COLORTERM` for correct true color rendering
