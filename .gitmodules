@@ -19,9 +19,6 @@
 [submodule "plugins/vim-bbye"]
 	path = plugins/vim-bbye
 	url = https://github.com/moll/vim-bbye.git
-[submodule "plugins/mynord.nvim"]
-	path = plugins/mynord.nvim
-	url = https://github.com/hanapedia/mynord.nvim.git
 [submodule "plugins/nvim-cmp"]
 	path = plugins/nvim-cmp
 	url = https://github.com/hrsh7th/nvim-cmp.git
@@ -118,3 +115,7 @@
 [submodule "plugins/nvim-treesitter"]
 	path = plugins/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "plugins/nord"]
+	path = plugins/nord
+	url = https://github.com/hanapedia/nord.git
+	branch = main

@@ -27,11 +27,11 @@ return {
 
   -- colorscheme
   {
-    dir = "/plugins/mynord.nvim",
+    dir = "/plugins/nord",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme mynord")
+      vim.cmd("colorscheme nord")
     end,
   },
 
