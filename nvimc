@@ -44,6 +44,13 @@ NORD_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/nord"
 mkdir -p "$NORD_STATE_DIR"
 MOUNTS="$MOUNTS -v $NORD_STATE_DIR:/home/dev/.local/state/nord:ro"
 
+# Run in the host's timezone. Besides matching timestamps, this is required
+# for sharing the host's GOCACHE below: the go command keys its module index
+# entries on file mtimes formatted with the local timezone, and with a
+# mismatched zone (container UTC vs host) entries written by one side break
+# the other ("package unsafe is not in std").
+[ -e /etc/localtime ] && MOUNTS="$MOUNTS -v /etc/localtime:/etc/localtime:ro"
+
 if [ -f "$MOUNT_SRC/go.mod" ]; then
   GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
   MOUNTS="$MOUNTS -v $GOMODCACHE:/home/dev/go/pkg/mod:ro"
@@ -65,8 +72,13 @@ if [ -n "$HEADERS_DIR" ]; then
   MOUNTS="$MOUNTS -v $HEADERS_DIR:/usr/local/include:ro"
 fi
 
+# Run as the host user so files edited/created in /workspace keep the
+# caller's ownership, regardless of the UID baked into the image. HOME is
+# set explicitly since the host UID usually has no passwd entry in the image.
 docker run --rm -it \
   --network=none \
+  --user "$(id -u):$(id -g)" \
+  -e HOME=/home/dev \
   -e TERM="$TERM" \
   -e COLORTERM="${COLORTERM:-truecolor}" \
   $MOUNTS \

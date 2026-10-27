@@ -96,7 +96,14 @@ SCRIPT
 # auto-creates missing mount-point ancestors as root, which then blocks
 # nvim itself from writing its own state (shada, etc.) under the same
 # .local/state directory.
-RUN mkdir -p /home/dev/.local/state && chown -R $DEV_UID:$DEV_GID /home/dev
+#
+# nvimc runs the container as the host user's UID/GID (--user), which
+# generally differs from DEV_UID in the prebuilt image, so the directories
+# nvim and gopls write to at runtime are made writable by any UID.
+RUN mkdir -p /home/dev/.local/state /home/dev/.cache && \
+    chown -R $DEV_UID:$DEV_GID /home/dev && \
+    chmod a+rwx /home/dev && \
+    chmod -R a+rwX /home/dev/.local /home/dev/.cache
 
 USER dev
 WORKDIR /workspace
